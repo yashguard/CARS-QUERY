@@ -12,8 +12,19 @@ server.get("/", async (req, res) => {
 server.post("/addCar", async (req, res) => {
   // <================== First Query ==================>
   // <================== Men who own a Pink car ==================>
-  const carList = await carDetails.find({gender : "Male", car_color : "Pink"});
-  const cars = await carDetails.find({gender : "Male", car_color : "Pink"}).count();
+  // const carList = await carDetails.find({gender : "Male", car_color : "Pink"});
+  // const cars = await carDetails.find({gender : "Male", car_color : "Pink"}).count();
+  // res.status(200).send(carList);
+  // console.log(cars);
+  // <================== Second Query ==================>
+  // <================== Women who own a Red or a Blue Car ==================>
+  const carList = await carDetails.find({
+    gender: "Female",
+    car_color: { $in: ["Red", "Blue"] },
+  });
+  const cars = await carDetails
+    .find({ gender: "Female", car_color: { $in: ["Red", "Blue"] } })
+    .count();
   res.status(200).send(carList);
   console.log(cars);
 });
