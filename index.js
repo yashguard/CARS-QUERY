@@ -40,16 +40,32 @@ server.post("/addCar", async (req, res) => {
   // console.log(cars);
   // <================== Fourth Query ==================>
   // <================== Women who purchased a Yellow car in the year 1985 ==================>
+  // const carList = await carDetails.find({
+  //   gender: "Female",
+  //   car_color: "Yellow",
+  //   purchase_year: 1985,
+  // });
+  // const cars = await carDetails
+  //   .find({
+  //     gender: "Female",
+  //     car_color: "Yellow",
+  //     purchase_year: 1985,
+  //   })
+  //   .count();
+  // res.status(200).send(carList);
+  // console.log(cars);
+  // <================== Fifth Query ==================>
+  // <================== Men who either have a Red or Green car and either live in Germany or Kenya ==================>
   const carList = await carDetails.find({
-    gender: "Female",
-    car_color: "Yellow",
-    purchase_year: 1985,
+    gender: "Male",
+    car_color: { $in: ["Red", "Green"] },
+    country: { $in: ["Germany", "Kenya"] },
   });
   const cars = await carDetails
     .find({
-      gender: "Female",
-      car_color: "Yellow",
-      purchase_year: 1985,
+      gender: "Male",
+      car_color: { $in: ["Red", "Green"] },
+      country: { $in: ["Germany", "Kenya"] },
     })
     .count();
   res.status(200).send(carList);
