@@ -29,12 +29,28 @@ server.post("/addCar", async (req, res) => {
   // console.log(cars);
   // <================== Third Query ==================>
   // <================== Men who purchased the car in the year 1998 ==================>
+  // const carList = await carDetails.find({
+  //   gender: "Male",
+  //   purchase_year: 1998,
+  // });
+  // const cars = await carDetails
+  //   .find({ gender: "Male", purchase_year: 1998 })
+  //   .count();
+  // res.status(200).send(carList);
+  // console.log(cars);
+  // <================== Fourth Query ==================>
+  // <================== Women who purchased a Yellow car in the year 1985 ==================>
   const carList = await carDetails.find({
-    gender: "Male",
-    purchase_year: 1998,
+    gender: "Female",
+    car_color: "Yellow",
+    purchase_year: 1985,
   });
   const cars = await carDetails
-    .find({ gender: "Male", purchase_year: 1998 })
+    .find({
+      gender: "Female",
+      car_color: "Yellow",
+      purchase_year: 1985,
+    })
     .count();
   res.status(200).send(carList);
   console.log(cars);
